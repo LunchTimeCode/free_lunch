@@ -1,9 +1,5 @@
 
 hurl_opts := "--test --jobs 4 --variables-file ./tests/variables"
-
-up *args: (build "latest")
-    docker compose down
-    docker compose up {{ args }}
     
 wait-for-api:
     hurl tests/health.hurl --retry 5 --retry-interval 1000 {{ hurl_opts }}
