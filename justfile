@@ -1,11 +1,12 @@
 import 'justfiles/linting.just'
 import 'justfiles/docker.just'
+import 'justfiles/hurl.just'
 
 image_name := "ghcr.io/lunchtimecode/free_lunch"
+SERVER_PORT := "9999"
 
 
 run *args:
-    touch local.db
     cargo run -- {{args}}
 
 

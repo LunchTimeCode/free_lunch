@@ -48,6 +48,10 @@ impl State {
 
         Self { db }
     }
+
+    pub async fn db(&self) -> &Database {
+        &self.db
+    }
 }
 
 pub async fn initial_state(config: Config) -> _State {

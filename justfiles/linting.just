@@ -1,5 +1,5 @@
 # Perform all verifications (compile, test, lint, etc.)
-@verify: test lint
+@verify: test lint hurl_tests
     echo ------------ verify done! ------------
 
 # Run tests

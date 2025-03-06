@@ -6,8 +6,10 @@ use state::Config;
 extern crate rocket;
 
 mod assets;
+mod db;
 mod page;
 mod state;
+mod tec_endpoints;
 mod test_table;
 
 #[launch]
@@ -24,9 +26,11 @@ pub type ServerState = State<state::_State>;
 async fn mount(rocket: Rocket<Build>, c: Config) -> Rocket<Build> {
     let asset_routes = assets::api();
     let base_routes = page::api();
+    let health = tec_endpoints::api();
     let state = state::initial_state(c).await;
     rocket
         .mount("/_assets", asset_routes)
         .mount("/", base_routes)
+        .mount("/", health)
         .manage(state)
 }
